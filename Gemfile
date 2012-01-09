@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0.rc2'
 
+# add essential gems for mongodb
+gem 'bson'
+gem 'bson_ext'
+gem 'mongo'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
