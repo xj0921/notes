@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/wycats/ruby-prof.git
+  revision: aece113ff1462b792ea58c6559d3c8fc9c95b468
+  specs:
+    ruby-prof (0.11.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -113,5 +119,6 @@ DEPENDENCIES
   jquery-rails
   mongo
   rails (= 3.2.0.rc2)
+  ruby-prof!
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)

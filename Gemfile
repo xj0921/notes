@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.0.rc2'
 
+gem 'jquery-rails'
+
 # add essential gems for mongodb
 gem 'bson'
 gem 'bson_ext'
@@ -21,7 +23,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+group :development, :test do
+  gem 'ruby-prof', :git => 'git://github.com/wycats/ruby-prof.git'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
