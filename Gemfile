@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.0.rc2'
 
@@ -28,7 +29,7 @@ group :development, :test do
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0', :require => "bcrypt"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
