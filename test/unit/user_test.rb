@@ -2,13 +2,13 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
-  def setup
+  setup do
     User.coll.drop
     @password_test = "password.1"
     @user1_attr = {email: "t_user1@test.com", name: "test_user_1", password: @password_test, password_confirmation: @password_test}
   end
 
-  def teardown
+  teardown do
   end
 
   test "create authenticate update delete one user" do
@@ -18,10 +18,20 @@ class UserTest < ActiveSupport::TestCase
     #TODO: update,delete
   end
 
-  test "need essential fields when create" do
+  test "create user when email not presence" do
+    assert false
+  end
+
+  test "create user when password not presence" do
+    assert false
+  end
+
+  test "create user when password not consistent" do
+    assert false
   end
 
   test "need essential fields when update" do
+    assert false
   end
 
 end

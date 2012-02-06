@@ -1,21 +1,29 @@
 class UsersController < ApplicationController
 
   def index
+    @users = User.coll.find()
   end
 
   def new
   end
 
   def create
-    user_attr = {}
-    user_attr[:email]=params[:email]
-    user_attr[:password]=params[:password]
-    user_attr[:password_confirmation]=params[:password_confirmation]
-    if User.create_one(user_attr)
-      redirect_to users_path, flash[:notice]=>"one user created!"
+    #TODO: validate before create and save to db
+    if User.create_one(params[:user])
+      redirect_to users_path, notice: "user successfully created!"
     else
       render 'new'
     end
+  end
+
+  def edit
+  end
+
+  def update
+      redirect_to users_path, notice: 'user information updated!'
+  end
+
+  def show
   end
 end
 
