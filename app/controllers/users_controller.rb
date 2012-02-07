@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if User.create_one(params[:user])
       redirect_to users_path, notice: "user successfully created!"
     else
-      render 'new'
+      render 'new', notice: "user create failed!"
     end
   end
 

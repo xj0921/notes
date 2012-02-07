@@ -5,7 +5,10 @@ class UserTest < ActiveSupport::TestCase
   setup do
     User.coll.drop
     @password_test = "password.1"
-    @user1_attr = {email: "t_user1@test.com", name: "test_user_1", password: @password_test, password_confirmation: @password_test}
+    @user1_attr = {email: "t_user1@test.com", nick_name: "test_user_1", password: @password_test, password_confirmation: @password_test}
+    @user2_attr = {email: "", nick_name: "test_user_1", password: @password_test, password_confirmation: @password_test}
+    @user3_attr = {email: "t_user1@test.com", nick_name: "test_user_1", password: "", password_confirmation: @password_test}
+    @user4_attr = {email: "t_user1@test.com", nick_name: "test_user_1", password: @password_test, password_confirmation: "password.2"}
   end
 
   teardown do
@@ -19,15 +22,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "create user when email not presence" do
-    assert false
+    assert !User.create_one(@user2_attr)
   end
 
   test "create user when password not presence" do
-    assert false
+    assert !User.create_one(@user3_attr)
   end
 
   test "create user when password not consistent" do
-    assert false
+    assert !User.create_one(@user4_attr)
   end
 
   test "need essential fields when update" do

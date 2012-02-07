@@ -15,6 +15,10 @@ class User
   end
 
   def self.create_one(user_attr)
+    # validate_user_attr
+    return false if user_attr["email"] == nil or user_attr["email"] == ""
+
+
     user_attr[:salt] = BCrypt::Engine.generate_salt
     user_attr[:encrypted_password] = BCrypt::Engine.hash_secret(user_attr[:password], user_attr[:salt])
 
@@ -35,4 +39,9 @@ class User
     user = User.coll.find(id: id).first
     (user && user["salt"] == cookie_salt) ? user : nil
   end
+
+  private
+  def validate_user_attr(user_attr)
+  end
+
 end
