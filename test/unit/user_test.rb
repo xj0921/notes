@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   setup do
-    User.coll.drop
+    #User.coll.drop
     @password_test = "password.1"
     @user1_attr = {email: "t_user1@test.com", nick_name: "test_user_1", password: @password_test, password_confirmation: @password_test}
     @user2_attr = {email: "", nick_name: "test_user_1", password: @password_test, password_confirmation: @password_test}

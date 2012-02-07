@@ -16,7 +16,7 @@ class User
 
   def self.create_one(user_attr)
     # validate_user_attr
-    return false if user_attr["email"] == nil or user_attr["email"] == ""
+    return false if user_attr[:email] == nil or user_attr[:email] == ""
 
 
     user_attr[:salt] = BCrypt::Engine.generate_salt
