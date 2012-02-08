@@ -11,8 +11,8 @@ Asnote::Application.routes.draw do
   end
   get "sign_up"=>"users#new", as: "sign_up"
 
-  #TODO:need to be changed
-  root :to => 'sessions#new'
+  get "welcome/about"=>"welcome#about"
+  root to: 'welcome#index'
                                                                                                          
   # The priority is based upon order of creation:
   # first created -> highest priority.
