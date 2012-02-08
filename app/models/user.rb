@@ -30,14 +30,8 @@ class User
   end
 
   def self.authenticate(email,submitted_password)
-    user = User.coll.find(email: email).first
+    user = User.coll.find_one(email: email)
     (user && user["encrypted_password"] == BCrypt::Engine.hash_secret(submitted_password,user["salt"])) ? user : nil
-  end
-
-  #TODO: use object_id instead of id (mongodb)
-  def self.authenticate_with_salt(id, cookie_salt)
-    user = User.coll.find(id: id).first
-    (user && user["salt"] == cookie_salt) ? user : nil
   end
 
   private

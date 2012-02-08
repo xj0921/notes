@@ -5,9 +5,14 @@ Asnote::Application.routes.draw do
   get "log_out"=>"sessions#destroy", as: "log_out"
 
   resources :users do
+    member do
+      get :home
+    end
   end
   get "sign_up"=>"users#new", as: "sign_up"
 
+  #TODO:need to be changed
+  root :to => 'sessions#new'
                                                                                                          
   # The priority is based upon order of creation:
   # first created -> highest priority.

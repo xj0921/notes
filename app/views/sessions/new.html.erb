@@ -1,0 +1,8 @@
+<%= form_tag sessions_path do %>
+  <%= label_tag("user[email]", "email") %> <%= text_field_tag("user[email]","") %>
+  <br/>
+  <%= label_tag("user[submitted_password]", "password") %> <%= text_field_tag("user[submitted_password]","") %>
+  <br/>
+  <%= submit_tag("Login") %>
+<% end %>
+

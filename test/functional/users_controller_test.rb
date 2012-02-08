@@ -37,7 +37,11 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "create new user failed for invalid data" do
-    assert false
+    assert_no_difference('User.coll.find.count') do
+      post :create, user: {email: "", password: "password.1", password_confirmation: "password.1"}
+    end
+    assert_template "new"
+    assert_equal 'error occured when create user!', flash[:error]
   end
 
   test "update user info" do

@@ -4,6 +4,9 @@ class UsersController < ApplicationController
     @users = User.coll.find()
   end
 
+  def home
+  end
+
   def new
   end
 
