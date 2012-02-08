@@ -1,32 +1,20 @@
 # encoding: UTF-8
 class User
-  #include ActiveModel::Validations
-  #include ActiveModel::MassAssignmentSecurity
-  #validates_presence_of :email, :password, :password_confirmation, :on=>:create_one
-  #validates_confirmation_of :password
-
-  #attr_accessor :email, :name, :password, :password_confirmation
-  #attr_accessible :email, :name, :password, :password_confirmation
-
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   def self.coll
     NoteDB.collection "users"
   end
 
-  def self.create_one(user_attr)
-    # validate_user_attr
-    return false if user_attr[:email] == nil or user_attr[:email] == ""
+  def self.create_one(user)
+    val = validate_signup_user(user); return val unless val[:status]
 
-
-    user_attr[:salt] = BCrypt::Engine.generate_salt
-    user_attr[:encrypted_password] = BCrypt::Engine.hash_secret(user_attr[:password], user_attr[:salt])
-
-    user_attr.delete :password
-    user_attr.delete :password_confirmation
-    user_attr[:created_at] = Time.now
-    user_attr[:updated_at] = Time.now
-    User.coll.insert(user_attr)
+    user[:salt] = BCrypt::Engine.generate_salt
+    user[:encrypted_password] = BCrypt::Engine.hash_secret(user[:password], user[:salt])
+    user.delete :password
+    user.delete :password_confirmation
+    user[:created_at] = user[:updated_at] = Time.now
+    User.coll.insert(user)
+    return {status: true, message: "user successfully created!"}
   end
 
   def self.authenticate(email,submitted_password)
@@ -35,7 +23,26 @@ class User
   end
 
   private
-  def validate_user_attr(user_attr)
+  def self.validate_signup_user(user)
+    email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    err_msg=[]
+    if user[:email] == "" or user[:email] == nil
+      err_msg << "邮箱不能为空"
+    elsif !(user[:email]=~email_regex)
+      err_msg << "邮件格式不正确"
+    elsif User.coll.find_one(email: user[:email])
+      err_msg << "该邮箱已被注册"
+    end
+    if user[:password] == "" or user[:password] == nil
+      err_msg << "密码不能为空"
+    #elsif user[:password].length<6
+    #  err_msg << "密码至少6位"
+    #elsif user[:password_confirmation]== "" or user[:password_confirmation] == nil
+    #  err_msg << "请输入确认密码"
+    elsif user[:password]!=user[:password_confirmation]
+      err_msg << "2次密码输入不一致"
+    end
+    err_msg.empty? ? {status: true, message: "no error"} : {status: false, message: err_msg}
   end
-
 end
+

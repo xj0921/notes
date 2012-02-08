@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user["_id"]
       redirect_to home_user_path(current_user), notice: "Logged in!"
     else
-      redirect_to new_session_path, notice: "Invalid email or password!"
+      flash[:error] = "Invalid email or password!"
+      redirect_to new_session_path
     end
   end
 

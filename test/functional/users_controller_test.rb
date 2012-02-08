@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
 
   setup do
+    User.coll.drop
   end
 
   teardown do
@@ -25,30 +26,36 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get show for user info" do
-    assert false
+    get :show
+    assert_response :success
   end
 
   test "create new user" do
     assert_difference('User.coll.find.count') do
       post :create, user: {email: "abc@test.com", password: "password.1", password_confirmation: "password.1"}
     end
-    assert_redirected_to users_path(assigns(:users))
-    assert_equal 'user successfully created!', flash[:notice]
+    assert_redirected_to new_session_path
+    assert_equal "user successfully created,please login.", flash[:notice]
   end
 
   test "create new user failed for invalid data" do
     assert_no_difference('User.coll.find.count') do
       post :create, user: {email: "", password: "password.1", password_confirmation: "password.1"}
     end
-    assert_template "new"
-    assert_equal 'error occured when create user!', flash[:error]
+    assert_redirected_to new_user_path
+    #assert_template "new"
+    assert_not_nil flash[:error]
   end
 
   test "update user info" do
-    user = User.coll.find({email: "abc@test.com"}).first
-    old_name = user["nick_name"]
+    assert false, "this feature to be done."
+    assert_difference('User.coll.find.count') do
+      post :create, user: {email: "abc@test.com", password: "password.1", password_confirmation: "password.1"}
+    end
+    user = User.coll.find_one({email: "abc@test.com"})
+    old_name = user[:nick_name]
     put :update, user: {ObjectId: user["_id"], nick_name: "test_name_1", current_password: "password.1"}
-    new_name = (User.coll.find({_id: user['_id']}).first)["nick_name"]
+    new_name = (User.coll.find({_id: user['_id']}).first)[:nick_name]
     assert_not_equal old_name, new_name
 
     #assert_redirected_to

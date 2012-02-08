@@ -1,8 +1,8 @@
 Asnote::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
-  get "log_in"=>"sessions#new", as: "log_in"
-  get "log_out"=>"sessions#destroy", as: "log_out"
+  get "login"=>"sessions#new", as: "login"
+  get "logout"=>"sessions#destroy", as: "logout"
 
   resources :users do
     member do

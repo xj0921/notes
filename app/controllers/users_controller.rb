@@ -11,11 +11,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    #TODO: validate before create and save to db
-    if User.create_one(params[:user])
-      redirect_to users_path, notice: "user successfully created!"
+    user_create = User.create_one(params[:user])
+    if user_create[:status]
+      redirect_to new_session_path, notice: "user successfully created,please login."
     else
-      render 'new', notice: "user create failed!"
+      flash[:error] = user_create[:message]
+      redirect_to new_user_path
     end
   end
 
