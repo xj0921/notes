@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_from_session
-    user = User.coll.find_one(_id: session[:user_id]) if session[:user_id]
+    user = User.find_one(_id: session[:user_id]) if session[:user_id]
     user["_id"] if user
   end
 end

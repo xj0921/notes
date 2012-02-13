@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   setup do
-    User.coll.drop
+    User.drop
   end
 
   teardown do

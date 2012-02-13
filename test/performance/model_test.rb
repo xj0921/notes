@@ -7,6 +7,6 @@ class ModelTest < ActionDispatch::PerformanceTest
   #                          :output => 'tmp/performance', :formats => [:flat] }
 
   def test_find_one_user
-    100.times { User.coll.find_one() }
+    100.times { User.find_one() }
   end
 end

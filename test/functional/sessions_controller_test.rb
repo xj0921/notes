@@ -5,7 +5,7 @@ class SessionsControllerTest < ActionController::TestCase
   #   assert true
   # end
   setup do
-    User.coll.drop
+    User.drop
   end
 
   teardown do
