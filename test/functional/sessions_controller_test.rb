@@ -18,7 +18,7 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "login with correct email password and logout" do
     user1_attr = {email: "t_user1@test.com", nick_name: "test_user_1", password: "password.1", password_confirmation: "password.1"}
-    assert User.create_one(user1_attr)[:status]
+    assert User.create_one(user1_attr)[:objid]
 
     post :create, user: {email: "t_user1@test.com", submitted_password: "password.1"}
     assert_not_nil session[:user_id]
@@ -33,7 +33,7 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "can not login with invalid email password" do
     user1_attr = {email: "t_user1@test.com", nick_name: "test_user_1", password: "password.1", password_confirmation: "password.1"}
-    assert User.create_one(user1_attr)[:status]
+    assert User.create_one(user1_attr)[:objid]
 
     post :create, user: {email: "t_user1@test.com", submitted_password: "password.2"}
     assert_nil session[:user_id]

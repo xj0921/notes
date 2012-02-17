@@ -3,15 +3,15 @@
 User = NoteDB.collection "users"
 
 def User.create_one(user)
-  val = validate_signup_user(user); return val unless val[:status]
+  val = validate_signup_user(user); return val unless val[:objid]
 
   user[:salt] = BCrypt::Engine.generate_salt
   user[:encrypted_password] = BCrypt::Engine.hash_secret(user[:password], user[:salt])
   user.delete :password
   user.delete :password_confirmation
   user[:created_at] = user[:updated_at] = Time.now
-  User.insert(user)
-  return {status: true, message: "user successfully created!"}
+  uid = User.insert(user)
+  return {objid: uid, message: "user successfully created!"}
 end
 
 def User.authenticate(email,submitted_password)
@@ -23,6 +23,7 @@ private
 def validate_signup_user(user)
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   err_msg=[]
+  #TODO: 用户属性不能超出页面设置的范围－禁止用户通过技术方法增加其余字段
   if user[:email] == "" or user[:email] == nil
     err_msg << "邮箱不能为空"
   elsif !(user[:email]=~email_regex)
@@ -40,6 +41,6 @@ def validate_signup_user(user)
   elsif user[:password]!=user[:password_confirmation]
     err_msg << "2次密码输入不一致"
   end
-  err_msg.empty? ? {status: true, message: "no error"} : {status: false, message: err_msg}
+  err_msg.empty? ? {objid: true, message: "no error"} : {objid: nil, message: err_msg}
 end
 

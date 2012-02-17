@@ -1,21 +1,21 @@
 class UsersController < ApplicationController
 
-  def index
-    @users = User.find()
+  def home
   end
 
-  def home
+  def index
+    @users = User.find
   end
 
   def new
   end
 
   def create
-    user_create = User.create_one(params[:user])
-    if user_create[:status]
-      redirect_to new_session_path, notice: "user successfully created,please login."
+    user = User.create_one(params[:user])
+    if user[:objid]
+      redirect_to new_session_path, notice: user[:message]
     else
-      flash[:error] = user_create[:message]
+      flash[:error] = user[:message]
       redirect_to new_user_path
     end
   end

@@ -35,7 +35,7 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: {email: "abc@test.com", password: "password.1", password_confirmation: "password.1"}
     end
     assert_redirected_to new_session_path
-    assert_equal "user successfully created,please login.", flash[:notice]
+    assert_equal "user successfully created!", flash[:notice]
   end
 
   test "create new user failed for invalid data" do

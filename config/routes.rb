@@ -4,6 +4,14 @@ Asnote::Application.routes.draw do
   get "login"=>"sessions#new", as: "login"
   get "logout"=>"sessions#destroy", as: "logout"
 
+  resources :notes do
+    resources :labels do
+    end
+
+    resources :records do
+    end
+  end
+
   resources :users do
     member do
       get :home
