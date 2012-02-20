@@ -3,7 +3,7 @@
 Note = NoteDB.collection "notes"
 
 def Note.create_one(note)
-  val = validate_create_note(note); return val unless val[:objid]
+  val = validate_create_one(note); return val unless val[:objid]
 
   note[:created_at] = note[:updated_at] = Time.now
   nid = Note.insert(note)
@@ -18,9 +18,28 @@ def Note.delete_one(note)
   Note.remove({_id: BSON::ObjectId(note)})
 end
 
+def Note.create_one_label(note_id, label)
+  val = validate_create_note_label(label); return val unless val[:lid]
+
+  label[:lid] = BSON::ObjectId.new
+  label[:created_at] = label[:updated_at] = Time.now
+  Note.update({_id: BSON::ObjectId(note_id)}, {'$addToSet'=>{labels: label}})
+  return {lid: label[:lid], message: "label successfully created!"}
+end
+
+def Note.update_one_label(label_id, label)
+  Note.update({'labels.lid'=>BSON::ObjectId(label_id)}, {'$set'=>{"$labels.$.name"=>label['name'], "$labels.$.comment"=>label["comment"], "labels.$.updated_at"=>Time.now}})
+end
+
+def Note.delete_one_label(note_id,label_id)
+  #TODO: delete releated data (note_info,records)
+  Note.update({_id: BSON::ObjectId(note_id)}, {'$pull'=>{labels: {lid: BSON::ObjectId(label_id)}}})
+end
+
 private
-def validate_create_note(note)
-  #TODO: 空名称不能存入，系统保留不能存入（_开头的名称）
+def validate_create_one(note)
+  #TODO: 系统保留不能存入（_开头的名称）
+  #TODO: 超出设计字段的情况不能存入
   err_msg=[]
   if note[:name] == "" or note[:name] == nil
     err_msg << "名称不能为空"
@@ -31,6 +50,20 @@ def validate_create_note(note)
   err_msg.empty? ? {objid: true, message: "no error"} : {objid: nil, message: err_msg}
 end
 
-def validate_update_note(note)
+def validate_update_one(note)
+end
+
+def validate_create_note_label(label)
+  #TODO: 超出设计字段的情况不能存入
+  #TODO: 重名列不能保存
+  #TODO: 系统保留列名
+  err_msg=[]
+  if label[:name] == "" or label[:name] == nil
+    err_msg << "名称不能为空"
+  end
+  err_msg.empty? ? {lid: true, message: "no error"} : {lid: nil, message: err_msg}
+end
+
+def validate_update_one_label(label)
 end
 

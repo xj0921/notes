@@ -17,9 +17,7 @@ class NotesController < ApplicationController
   end
 
   def edit
-    #puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-    #puts @note = Note.find_one({_id: BSON::ObjectId(params[:nid])})["_id"]
-    #puts "#############################"
+    @note = Note.find_one({_id: BSON::ObjectId(params[:id])})
   end
 
   def update
@@ -27,11 +25,11 @@ class NotesController < ApplicationController
   end
 
   def show
-    #@note = Note.find_one({_id: BSON::ObjectId(params[:nid])})
+    @note = Note.find_one({_id: BSON::ObjectId(params[:id])})
   end
 
   def destroy
-    if Note.delete_one(params[:nid])
+    if Note.delete_one(params[:id])
       redirect_to notes_path, notice: "delete note successed!"
     else
       flash[:error] = "delete note failed!"

@@ -23,13 +23,13 @@ class NotesControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit
     assert_response :success
-    #TODO: assert_not_nil assigns(:note)
+    assert_not_nil assigns(:note)
   end
 
   test "should get show of note info" do
     get :show
     assert_response :success
-    #TODO: assert_not_nil assigns(:note)
+    assert_not_nil assigns(:note)
   end
 
   test "create new note and update and delete" do
@@ -40,10 +40,11 @@ class NotesControllerTest < ActionController::TestCase
     assert_redirected_to notes_path
     assert_equal "note successfully created!", flash[:notice]
 
+    #TODO: update test
+
     note_id = Note.find_one["_id"].to_s
-    note = {nid: note_id}
     assert_difference('Note.count', -1) do
-      delete :destroy, note
+      delete :destroy, id: note_id
     end
     assert_redirected_to notes_path
     assert_equal "delete note successed!", flash[:notice]
@@ -55,7 +56,7 @@ class NotesControllerTest < ActionController::TestCase
       post :create, note_params
     end
     assert_redirected_to new_note_path
-    #assert_template "new"
+    #TODO: assert_template "new"
     assert_not_nil flash[:error]
   end
 
