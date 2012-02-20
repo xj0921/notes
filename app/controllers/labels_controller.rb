@@ -49,10 +49,10 @@ class LabelsController < ApplicationController
     @note_id = params[:note_id]
     @label_id = params[:id]
     if Note.delete_one_label(@note_id, @label_id)
-      redirect_to note_labels_path(note_id), notice: "delete label successed!"
+      redirect_to note_labels_path(@note_id), notice: "delete label successed!"
     else
       flash[:error] = "delete label failed!"
-      redirect_to note_labels_path(note_id)
+      redirect_to note_labels_path(@note_id)
     end
   end
 end

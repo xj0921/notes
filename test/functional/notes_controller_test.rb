@@ -4,6 +4,8 @@ class NotesControllerTest < ActionController::TestCase
 
   setup do
     Note.drop
+    note_attr={name: "note1", comment: "note1 for test"}
+    @note_id = Note.create_one(note_attr)[:objid].to_s
   end
 
   teardown do
@@ -21,13 +23,13 @@ class NotesControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit
+    get :edit, id: @note_id
     assert_response :success
     assert_not_nil assigns(:note)
   end
 
   test "should get show of note info" do
-    get :show
+    get :show, id: @note_id
     assert_response :success
     assert_not_nil assigns(:note)
   end
