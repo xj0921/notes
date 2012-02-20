@@ -32,13 +32,21 @@ class NotesControllerTest < ActionController::TestCase
     #TODO: assert_not_nil assigns(:note)
   end
 
-  test "create new note and update this note info" do
+  test "create new note and update and delete" do
     note_params = {note: {name: "note1", comment: "note1 for controller test"}}
     assert_difference('Note.count') do
       post :create, note_params
     end
     assert_redirected_to notes_path
     assert_equal "note successfully created!", flash[:notice]
+
+    note_id = Note.find_one["_id"].to_s
+    note = {nid: note_id}
+    assert_difference('Note.count', -1) do
+      delete :destroy, note
+    end
+    assert_redirected_to notes_path
+    assert_equal "delete note successed!", flash[:notice]
   end
 
   test "create new note failed for invalid data" do

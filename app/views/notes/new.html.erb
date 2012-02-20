@@ -1,0 +1,8 @@
+<%= form_tag "/notes" do %>
+  <%= label_tag("note[name]", "name") %> <%= text_field_tag("note[name]","") %>
+  <br/>
+  <%= label_tag("note[comment]", "comment") %> <%= text_area_tag("note[comment]", "") %>
+  <br/>
+  <%= submit_tag("new") %>
+<% end %>
+
