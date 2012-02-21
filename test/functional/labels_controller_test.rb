@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class LabelsControllerTest < ActionController::TestCase
@@ -28,13 +30,15 @@ class LabelsControllerTest < ActionController::TestCase
     get :edit, note_id: @note_id, id: @label_id
     assert_response :success
     assert_not_nil assigns(:note)
+    assert_not_equal assigns(:note), Mongo::Cursor
     assert_not_nil assigns(:label)
   end
 
   test "should get show of label info" do
-    get :show, :note_id => @note_id, :id => @label_id
+    get :show, note_id: @note_id, id: @label_id
     assert_response :success
     assert_not_nil assigns(:note)
+    assert_not_equal assigns(:note), Mongo::Cursor
     assert_not_nil assigns(:label)
   end
 

@@ -9,8 +9,8 @@ class LabelsController < ApplicationController
   end
 
   def create
-    note_id = params[:note_id]
-    label = Note.create_one_label(note_id, params[:label])
+    @note_id = params[:note_id]
+    label = Note.create_one_label(@note_id, params[:label])
     if label[:lid]
       redirect_to note_labels_path(@note_id), notice: label[:message]
     else

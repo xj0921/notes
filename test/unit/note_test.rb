@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'test_helper'
 
 class NoteTest < ActiveSupport::TestCase
@@ -17,7 +19,7 @@ class NoteTest < ActiveSupport::TestCase
     #TODO: update
     #TODO: need essential filelds when update note
     assert Note.delete_one(note.to_s)
-    assert !Note.find_one({_id: note})
+    assert_nil Note.find_one({_id: note})
     #TODO: test if note releated data have been deleted
   end
 
@@ -38,10 +40,11 @@ class NoteTest < ActiveSupport::TestCase
   test "create label and update delete it" do
     note_attr={name: "note1", comment: "note1 for test"}
     label_attr={name: "label1", comment: "label1 of note1 for test"}
+    label_attr2={name: "label2", comment: "label2 of note1 for test"}
     assert note_id = Note.create_one(note_attr)[:objid].to_s
     assert label_id = Note.create_one_label(note_id,label_attr)[:lid].to_s
     #TODO: check data persistence of attr and in_db:create
-    assert Note.update_one_label(label_id, label_attr)[:lid]
+    assert Note.update_one_label(label_id, label_attr2)[:lid]
     #TODO: check data persistence of attr and in_db:update
     assert Note.delete_one_label(note_id,label_id)
     #TODO: this record should not exist in db after delete

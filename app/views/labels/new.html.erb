@@ -1,0 +1,6 @@
+<%= form_tag "/notes/#{@note_id}/labels" do %>
+  <%= label_tag("label[name]", "label") %>
+  <%= text_field_tag("label[name]","") %>
+
+  <%= submit_tag("Add") %>
+<% end %>

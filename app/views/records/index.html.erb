@@ -1,0 +1,14 @@
+
+record index page
+<%= debug(@note_id) %>
+<br/>
+<%= debug(@note) %>
+<br/>
+<%= debug(@records) %>
+<br/>
+
+<ul>
+<% @records.each do |record| %>
+  <li> <%= debug(record) %> </li>
+<% end %>
+</ul>
