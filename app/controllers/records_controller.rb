@@ -23,7 +23,7 @@ class RecordsController < ApplicationController
 
   def edit
     @note = Note.find_one({_id: BSON::ObjectId(params[:note_id])})
-    @record = Record.find({_id: BSON::ObjectId(params[:id])})
+    @record = Record.find_one({_id: BSON::ObjectId(params[:id])})
   end
 
   def update
@@ -39,7 +39,7 @@ class RecordsController < ApplicationController
 
   def show
     @note = Note.find_one({_id: BSON::ObjectId(params[:note_id])})
-    @record = Record.find({_id: BSON::ObjectId(params[:id])})
+    @record = Record.find_one({_id: BSON::ObjectId(params[:id])})
   end
 
   def destroy

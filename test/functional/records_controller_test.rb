@@ -40,6 +40,7 @@ class RecordsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:note)
     assert_not_equal assigns(:note), Mongo::Cursor
     assert_not_nil assigns(:record)
+    assert_not_equal assigns(:record), Mongo::Cursor
   end
 
   test "should get show of record info" do
@@ -48,6 +49,7 @@ class RecordsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:note)
     assert_not_equal assigns(:note), Mongo::Cursor
     assert_not_nil assigns(:record)
+    assert_not_equal assigns(:record), Mongo::Cursor
   end
 
   test "create new record and update and delete" do
