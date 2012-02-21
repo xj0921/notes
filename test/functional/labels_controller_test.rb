@@ -76,7 +76,7 @@ class LabelsControllerTest < ActionController::TestCase
     #TODO: label_db = Note.find_one_label(@label_id)
     #TODO: assert_not_equal label_params[:comment], label_db[:comment]
     assert_equal "label update failed!", flash[:error]
-    assert_redirected_to note_labels_path(@note_id)
+    assert_redirected_to edit_note_label_path(@note_id)
 
   end
 end

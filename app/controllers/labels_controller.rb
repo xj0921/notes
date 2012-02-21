@@ -29,7 +29,7 @@ class LabelsController < ApplicationController
 
   def update
     @note_id = params[:note_id]
-    if Note.update_one_label(params[:id], params[:label])
+    if Note.update_one_label(params[:id], params[:label])[:lid]
       redirect_to note_labels_path(@note_id), notice: "label successfully updated!"
     else
       flash[:error] = "label update failed!"

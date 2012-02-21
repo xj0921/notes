@@ -28,7 +28,11 @@ def Note.create_one_label(note_id, label)
 end
 
 def Note.update_one_label(label_id, label)
+  val = validate_update_one_label(label); return val unless val[:lid]
+
+  #TODO: 修改实现代码，避免每一个属性进行set，使得能够一句更新所有属性
   Note.update({'labels.lid'=>BSON::ObjectId(label_id)}, {'$set'=>{"$labels.$.name"=>label['name'], "$labels.$.comment"=>label["comment"], "labels.$.updated_at"=>Time.now}})
+  return {lid: label_id, message: "label successfully created!"}
 end
 
 def Note.delete_one_label(note_id,label_id)
@@ -65,5 +69,13 @@ def validate_create_note_label(label)
 end
 
 def validate_update_one_label(label)
+  #TODO: 超出设计字段的情况不能存入
+  #TODO: 不能和其它列名一样，提示已存在相同列名
+  #TODO: 系统保留列名
+  err_msg=[]
+  if label[:name] == "" or label[:name] == nil
+    err_msg << "名称不能为空"
+  end
+  err_msg.empty? ? {lid: true, message: "no error"} : {lid: nil, message: err_msg}
 end
 

@@ -41,7 +41,7 @@ class NoteTest < ActiveSupport::TestCase
     assert note_id = Note.create_one(note_attr)[:objid].to_s
     assert label_id = Note.create_one_label(note_id,label_attr)[:lid].to_s
     #TODO: check data persistence of attr and in_db:create
-    assert Note.update_one_label(label_id, label_attr)
+    assert Note.update_one_label(label_id, label_attr)[:lid]
     #TODO: check data persistence of attr and in_db:update
     assert Note.delete_one_label(note_id,label_id)
     #TODO: this record should not exist in db after delete
