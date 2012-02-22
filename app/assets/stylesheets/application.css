@@ -11,3 +11,73 @@
  *= require_self
  *= require_tree .
 */
+body {
+  margin: 0px;
+  text-align: center;
+  background-image: url(bg.jpg);
+}
+
+button {
+  text-align: center;
+  font-size: 13px;
+  color: black;
+  width: 60px;
+}
+
+#container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0;
+  width: 80%;
+  height: 100%;
+}
+
+b.rtop, b.rbottom{display:block;background:#FFFFFF;clear:both;}
+b.rtop b, b.rbottom b{display:block;height:1px;overflow:hidden;background:#D5DBD3;clear: both;}
+b.r1{margin:0 5px;clear: both;}
+b.r2{margin:0 3px;clear: both;}
+b.r3{margin:0 2px;clear: both;}
+b.rtop b.r4, b.rbottom b.r4{margin:0 1px;height:2px;clear: both;}
+
+#header {
+  text-align: left;
+  margin: 3px auto;
+  background-color: #D5DBD3;
+}
+
+#header a:link{color:#1B1B1B;text-decoration: none;}
+#header a:hover {text-decoration: underline}
+
+#logo{
+  vertical-align: middle;
+  margin-left: 10%;
+  float: left;
+}
+
+.menu {
+}
+
+#user {
+  vertical-align: middle;
+  margin-right: 10%;
+  float: right;
+}
+
+#main_content {
+  margin: 3px auto;
+  text-align: left;
+  font-size: 13px;
+  background-color: #D5DBD3;
+}
+
+#footer {
+  text-align: center;
+  margin: 3px auto;
+  font-size: 13px;
+  background-color: #D5DBD3;
+}
+
+#footer a:link {
+  color: #949494;
+}
