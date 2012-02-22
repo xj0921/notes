@@ -28,7 +28,6 @@ button {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  margin: 0;
   width: 80%;
   height: 100%;
 }
@@ -64,7 +63,7 @@ b.rtop b.r4, b.rbottom b.r4{margin:0 1px;height:2px;clear: both;}
   float: right;
 }
 
-#main_content {
+#content {
   margin: 3px auto;
   text-align: left;
   font-size: 13px;

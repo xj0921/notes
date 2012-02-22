@@ -28,17 +28,19 @@
       <% end %>
     </div>
 
-    <div id="main_content_top">
-    </div>
-
-    <div id="main_content">
+    <div id="content">
       <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
-      here is main content
-      <%= yield %>
-      <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
-    </div>
+      <div id="content_top">
+      </div>
 
-    <div id="main_content_bottom">
+      <div id="content_main">
+        here is main content
+        <%= yield %>
+      </div>
+
+      <div id="content_bottom">
+      </div>
+      <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
     </div>
 
     <div id="footer">
