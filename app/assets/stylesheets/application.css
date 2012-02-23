@@ -63,6 +63,11 @@ b.rtop b.r4, b.rbottom b.r4{margin:0 1px;height:2px;clear: both;}
   float: right;
 }
 
+#message_box {
+  margin: 3px auto;
+  background-color: #D5DBD3;
+}
+
 #content {
   margin: 3px auto;
   text-align: left;

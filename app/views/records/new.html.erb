@@ -1,4 +1,4 @@
-<%= form_tag "/notes/#{@note_id}/records" do %>
+<%= form_tag note_records_path(@note_id) do %>
   <% @note["labels"].each do |label| %>
     <%= label_tag("record[#{label['lid']}]", label['name']) %> 
     <%= text_field_tag("record[#{label['lid']}]", "") %>
