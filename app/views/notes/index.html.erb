@@ -1,7 +1,35 @@
-Notes list:
-<ol>
-  <% @notes.each do |note| %>
-    <li><%= note["name"] %>(<%= note["_id"] %>)</li>
-  <% end %>
-</ol>
+<div class="menu">
+  <%= link_to 'Notes', notes_path %>
+  <%= link_to 'Add new notes', new_note_path %>
+</div>
 
+<div>
+  <% if @pages!=1%>
+    <% @pages.times do |num|%>
+      <%= link_to num+1, {page: num+1} %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="content2"
+  <ul>
+    <% @notes.each do |note| %>
+      <li>
+        <div>
+          <%= link_to note['name'],note_records_path(note['_id']) %>&nbsp;&nbsp;
+          <%= link_to "show", note_path(note['_id']) %>
+          <%= button_to "delete", note_path(note['_id']), :method => :delete %>
+        </div>
+        <div>
+          <% if current_user %>
+            <% if User.note_followed?(note['_id'],session[:user_id]) %>
+              <%= render :partial=>"note_unfollow", :locals=>{:note_id=>note['_id']} %>
+            <% else %>
+              <%= render :partial=>"note_follow", :locals=>{:note_id=>note['_id']} %>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+    <%end%>
+  </ul>
+</div>

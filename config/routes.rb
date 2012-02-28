@@ -15,6 +15,8 @@ Asnote::Application.routes.draw do
   resources :users do
     member do
       get :home
+      post :create_fnote
+      delete :destroy_fnote
     end
   end
   get "sign_up"=>"users#new", as: "sign_up"

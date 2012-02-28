@@ -19,6 +19,20 @@ def User.authenticate(email,submitted_password)
   (user && user["encrypted_password"] == BCrypt::Engine.hash_secret(submitted_password,user["salt"])) ? user : nil
 end
 
+def User.note_followed?(note_id,user_id)
+  User.find_one({_id: user_id},{fields:{fnotes:1,_id:0}})['fnotes'].to_a.include? note_id
+end
+
+def User.create_fnote(user_id,note_id)
+  note_id=BSON::ObjectId(note_id)
+  User.update({_id: user_id},{'$addToSet' => {fnotes: note_id}})
+end
+
+def User.del_fnote(user_id,note_id)
+  note_id=BSON::ObjectId(note_id)
+  User.update({_id: user_id},{'$pull'=> {fnotes: note_id}})
+end
+
 private
 def validate_signup_user(user)
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

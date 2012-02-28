@@ -1,14 +1,27 @@
+<div class="menu">
+  <%= link_to 'Notes', notes_path %>
+  <%= link_to 'Set Note Column', note_label_path(@note['_id']) %>
+  <%= link_to 'Add Note Recode', new_note_record_path(@note['_id']) %>
+</div>
 
-record index page
-<%= debug(@note_id) %>
-<br/>
-<%= debug(@note) %>
-<br/>
-<%= debug(@records) %>
-<br/>
-
-<ul>
-<% @records.each do |record| %>
-  <li> <%= debug(record) %> </li>
-<% end %>
-</ul>
+<table border="1">
+  <% if @note['labels']!=nil && @note['labels']!=[]%>
+    <tr>
+       <th>NO</th>
+         <% @note['labels'].each do |label| %>
+           <th><%= label['name'] %></th>
+         <% end %>
+    </tr>
+  <% end %>
+                                              
+  <% @records.each do |record| %>
+    <tr>
+      <td><%= link_to record['_id'], note_record_path(@note_id,record['_id']) %></td>
+        <% @note['labels'].each do |label| %>
+          <td><%= record[label['lid'].to_s] %></td>
+        <% end %>
+      <td><%= link_to "Edit",edit_note_record_path(@note_id,record['_id']) %></td>
+      <td><%= button_to "delete",note_record_path(@note_id, record['_id']), :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

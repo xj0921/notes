@@ -1,2 +1,5 @@
-
-<%= debug(@record) %>
+<% @note['labels'].each do |label| %>
+  <p>
+    <b><%= label['name'] %>:</b><%= @record[label['lid'].to_s] %>
+  </p>
+<%end%>

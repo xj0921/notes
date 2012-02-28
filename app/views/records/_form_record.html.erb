@@ -1,0 +1,3 @@
+<% @note['labels'].each do |label| %>
+  <%= label_tag("record[#{label['name']}]", label['name']) %> <%= text_field_tag("record[#{label['lid']}]",@record[label['lid'].to_s]) %><br/>
+<% end %>

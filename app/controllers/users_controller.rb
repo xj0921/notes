@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.find
+    @users = User.find.page(params[:page].to_i).to_a
+    @pages=(User.find.to_a.count.to_f / 10).ceil
   end
 
   def new
@@ -28,6 +29,16 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def create_fnote
+    User.create_fnote(session[:user_id],params[:note_id])
+    redirect_to :back
+  end
+
+  def destroy_fnote
+    User.del_fnote(session[:user_id],params[:note_id])
+    redirect_to :back
   end
 end
 

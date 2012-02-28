@@ -1,0 +1,5 @@
+<%= form_tag "/notes/#{@note['_id']}/records/#{@record['_id']}",:method=>"put" do %>
+  <%= render "form_record" %>
+  <%= submit_tag("Edit") %>
+<% end %>
+

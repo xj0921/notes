@@ -18,48 +18,43 @@ body {
 }
 
 button {
-  text-align: center;
-  font-size: 13px;
-  color: black;
-  width: 60px;
+  height: 23px;
+  width: 50px;
+  border: #7b9ebd 1px solid;
+  padding: 3px;
+  margin-left: 10px;
 }
 
 #container {
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  height: 100%;
+  margin: auto;
+  width: 1200px;
 }
 
-b.rtop, b.rbottom{display:block;background:#FFFFFF;clear:both;}
-b.rtop b, b.rbottom b{display:block;height:1px;overflow:hidden;background:#D5DBD3;clear: both;}
-b.r1{margin:0 5px;clear: both;}
-b.r2{margin:0 3px;clear: both;}
-b.r3{margin:0 2px;clear: both;}
-b.rtop b.r4, b.rbottom b.r4{margin:0 1px;height:2px;clear: both;}
-
 #header {
-  text-align: left;
+  border-radius: 7px;
   margin: 3px auto;
   background-color: #D5DBD3;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
 }
 
 #header a:link{color:#1B1B1B;text-decoration: none;}
 #header a:hover {text-decoration: underline}
 
 #logo{
-  vertical-align: middle;
-  margin-left: 10%;
+  margin-left: 100px;
   float: left;
 }
 
 .menu {
+  margin-left: 40px;
+  float: left;
 }
 
-#user {
-  vertical-align: middle;
-  margin-right: 10%;
+.user {
+  margin-right:100px;
   float: right;
 }
 
@@ -69,19 +64,71 @@ b.rtop b.r4, b.rbottom b.r4{margin:0 1px;height:2px;clear: both;}
 }
 
 #content {
-  margin: 3px auto;
-  text-align: left;
+  border-radius: 7px;
   font-size: 13px;
   background-color: #D5DBD3;
+  height: 595px;
 }
 
 #footer {
-  text-align: center;
+  border-radius: 7px;
   margin: 3px auto;
-  font-size: 13px;
+  font-size:13px;
   background-color: #D5DBD3;
+  line-height: 28px;
+  vertical-align: middle;
 }
 
 #footer a:link {
   color: #949494;
 }
+
+.login1{
+  margin-top: 100px;
+  float: left;
+  margin-left: 565px;
+  font-size: 21px;
+}
+
+.login2{
+  float: left;
+  margin-left: 490px;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.login3{
+  float: left;
+  margin-left: 490px;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.login4{
+  float: left;
+  margin-left: 490px;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.login5{
+  float: left;
+  margin-left: 560px;
+  margin-top: 15px;
+}
+
+.content2{
+  float: left;
+  margin-left: 450px;
+  margin-top: 60px;
+  height: 350px;
+  vertical-align:middle;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+#message_box{
+  border-radius: 7px;
+  color: red;
+}
+

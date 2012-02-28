@@ -1,10 +1,10 @@
 # encoding: UTF-8
+require "mongo_helper"
 
 Note = NoteDB.collection "notes"
 
 def Note.create_one(note)
   val = validate_create_note(note); return val unless val[:objid]
-
   note[:created_at] = note[:updated_at] = Time.now
   nid = Note.insert(note)
   return {objid: nid, message: "note successfully created!"}
@@ -29,9 +29,10 @@ end
 
 def Note.update_one_label(label_id, label)
   val = validate_update_note_label(label); return val unless val[:lid]
-
+  p label_id
+  p label['name']
   #TODO: 修改实现代码，避免每一个属性进行set，使得能够一句更新所有属性
-  Note.update({'labels.lid'=>BSON::ObjectId(label_id)}, {'$set'=>{"$labels.$.name"=>label['name'], "$labels.$.comment"=>label["comment"], "labels.$.updated_at"=>Time.now}})
+  Note.update({'labels.lid'=>BSON::ObjectId(label_id)}, {'$set'=>{"labels.$.name"=>label['name'], "labels.$.comment"=>label["comment"], "labels.$.updated_at"=>Time.now}})
   return {lid: label_id, message: "label successfully created!"}
 end
 
