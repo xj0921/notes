@@ -1,0 +1,4 @@
+<%= form_tag "/users/#{session[:user_id]}/create_fnote" do %>
+  <%= hidden_field_tag(:note_id, note_id) %>
+  <%= submit_tag("Follow") %>
+<% end %>

@@ -81,5 +81,29 @@ class RecordsControllerTest < ActionController::TestCase
   test "update record failed for invalid data" do
     assert false, "this feature to be done."
   end
+  
+  test "click page1 when records=11" do
+    10.times {Record.create_one(@note_id, {@label_id1=>"content1", @label_id2=>"content1中文字符"})}
+    get :index, page: 1,note_id: @note_id
+    assert_response :success
+    assert_not_nil assigns(:note_id)
+    assert_not_nil assigns(:note)
+    assert_not_nil assigns(:records)
+    assert_not_nil assigns(:pages)
+    assert_equal assigns(:records).count, 10
+    assert_equal assigns(:pages), 2
+  end
+
+  test "click page2 when records=11" do
+    10.times {Record.create_one(@note_id, {@label_id1=>"content1", @label_id2=>"content1中文字符"})}
+    get :index, page: 2,note_id: @note_id
+    assert_response :success
+    assert_not_nil assigns(:note_id)
+    assert_not_nil assigns(:note)
+    assert_not_nil assigns(:records)
+    assert_not_nil assigns(:pages)
+    assert_equal assigns(:records).count, 1
+    assert_equal assigns(:pages), 2
+  end
 end
 

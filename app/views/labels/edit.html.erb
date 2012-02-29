@@ -1,0 +1,4 @@
+<%= form_tag "/notes/#{@note['_id']}/labels/#{@label_id}",:method=>"put" do %>
+  <%= label_tag("label", "label") %> <%= text_field_tag("label[name]", @label['name']) %>
+  <%= submit_tag("Edit") %>
+<% end %>

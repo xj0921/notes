@@ -67,5 +67,31 @@ class NotesControllerTest < ActionController::TestCase
   test "update note info" do
     assert false, "this feature to be done."
   end
+
+  test "click page1 when notes=11" do
+    #note_params = {note: {name: "note1", comment: "note1 for controller test"}}
+    #TODO: add data using controller post method
+    #10.times {post :create, note_params}
+    10.times {Note.create_one({name: "note1", comment: "note1 for test"})}
+    get :index, page: 1 
+    assert_response :success
+    assert_not_nil assigns(:notes)
+    assert_not_nil assigns(:pages)
+    assert_equal assigns(:notes).count, 10
+    assert_equal assigns(:pages), 2
+  end
+
+  test "click page2 when notes=11" do
+    #note_params = {note: {name: "note1", comment: "note1 for controller test"}}
+    #TODO: add data using controller post method
+    #10.times {post :create, note_params}
+    10.times {Note.create_one({name: "note1", comment: "note1 for test"})}
+    get :index, page: 2 
+    assert_response :success
+    assert_not_nil assigns(:notes)
+    assert_not_nil assigns(:pages)
+    assert_equal assigns(:notes).count, 1
+    assert_equal assigns(:pages), 2
+  end
 end
 

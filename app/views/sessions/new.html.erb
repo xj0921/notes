@@ -1,8 +1,13 @@
+<div class="login1">用户登录</div>
 <%= form_tag sessions_path do %>
-  <%= label_tag("user[email]", "email") %> <%= text_field_tag("user[email]","") %>
-  <br/>
-  <%= label_tag("user[submitted_password]", "password") %> <%= text_field_tag("user[submitted_password]","") %>
-  <br/>
-  <%= submit_tag("Login") %>
+  <div class="login2">
+    <%= label_tag("user[email]", "用户邮箱") %> <%= text_field_tag("user[email]","") %>
+  </div>
+  <div class="login3">
+    <%= label_tag("user[submitted_password]", "用户密码") %> <%= text_field_tag("user[submitted_password]","") %>
+  </div>
+  <div class="login5">
+    <%= submit_tag("Login") %>
+  </div>
 <% end %>
 

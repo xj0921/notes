@@ -1,0 +1,4 @@
+<%= form_tag "/users/#{note_id}/destroy_fnote",:method => :delete  do %>
+  <%= hidden_field_tag(:note_id, note_id) %>
+  <%= submit_tag("Unfollow") %>
+<% end %>

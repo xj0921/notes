@@ -62,5 +62,24 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal 'user information updated!', flash[:notice]
   end
 
+  test "click page1 when users=11" do
+    11.times {|i| User.create_one({email: "test#{i}@xinxian.com", password: '111111',password_confirmation: '111111'})}
+    get :index, page: 1
+    assert_response :success
+    assert_not_nil assigns(:users)
+    assert_not_nil assigns(:pages)
+    assert_equal assigns(:users).count, 10
+    assert_equal assigns(:pages), 2
+  end
+
+  test "click page2 when users=11" do
+    11.times {|i| User.create_one({email: "test#{i}@xinxian.com", password: '111111',password_confirmation: '111111'})}
+    get :index, page: 2
+    assert_response :success
+    assert_not_nil assigns(:users)
+    assert_not_nil assigns(:pages)
+    assert_equal assigns(:users).count, 1
+    assert_equal assigns(:pages), 2
+  end
 end
 

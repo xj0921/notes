@@ -1,11 +1,22 @@
+<div>
+  <b>
+    <%= link_to @note['name'], note_records_path(@note['_id']) %>: Set Note Column
+  </b>
+</div>
 
-<%= debug(@note) %>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<%= debug(@labels) %>
+<div class="menu">
+  <%= link_to 'Notes', notes_path %>
+  <%= link_to 'Add_Note_Column', new_note_label_path(@note['_id']) %>
+</div>
+
+<ul>
+  <% if @note['labels']!=nil %>
+    <% @note['labels'].each do |label| %>
+      <li>
+        <%= link_to label['name'],note_label_path(@note['_id'],label['lid']) %>
+        <%= button_to "delete label", note_label_path(@note['_id'],label['lid']), :method => :delete %>
+        <%= link_to "Edit",edit_note_label_path(@note['_id'],label['lid']) %>
+      </li>
+    <%end%>
+  <% end %>
+</ul>

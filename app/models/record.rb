@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require "mongo_helper"
 
 Record = NoteDB.collection "records"
 

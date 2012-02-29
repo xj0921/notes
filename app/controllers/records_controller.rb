@@ -2,7 +2,8 @@ class RecordsController < ApplicationController
   def index
     @note_id = params[:note_id]
     @note = Note.find_one({_id: BSON::ObjectId(@note_id)})
-    @records = Record.find({nid: BSON::ObjectId(@note_id)})
+    @records = Record.find({nid: BSON::ObjectId(@note_id)}).page(params[:page].to_i).to_a
+    @pages=(Record.find({nid: BSON::ObjectId(@note_id)}).to_a.count.to_f / 10).ceil
   end
 
   def new

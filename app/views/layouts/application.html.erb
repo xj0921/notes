@@ -10,45 +10,37 @@
   <div id="container">
 
     <div id="header">
-      <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
       <div id="logo">
-        here is logo
+        Logo
       </div>
 
-      <div id="user">
-        here is user
+      <div class="user">
+        user
       </div>
-      <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
     </div>
 
     <div id="message_box">
-      <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
-      here is message box
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash#{name}" %>
+      <% if flash %>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, id: "flash#{name}" %>
+        <% end %>
       <% end %>
-      <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
     </div>
 
     <div id="content">
-      <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
       <div id="content_top">
       </div>
 
       <div id="content_main">
-        here is main content
         <%= yield %>
       </div>
 
       <div id="content_bottom">
       </div>
-      <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
     </div>
 
     <div id="footer">
-      <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
       here is footer
-      <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
     </div>
 
   </div>

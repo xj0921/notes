@@ -1,10 +1,16 @@
+<div class="login">用户注册</div>
 <%= form_tag "/users" do %>
-  <%= label_tag("user[email]", "email") %> <%= text_field_tag("user[email]","") %>
-  <br/>
-  <%= label_tag("user[password]", "password") %> <%= text_field_tag("user[password]", "") %>
-  <br/>
-  <%= label_tag("user[password_confirmation]", "password_confirmation") %> <%= text_field_tag("user[password_confirmation]", "") %>
-  <br/>
-  <%= submit_tag("new") %>
+  <div class="login2">
+    <%= label_tag("user[email]", "用户邮箱") %> <%= text_field_tag("user[email]","") %>
+  </div> 
+  <div class="login3">
+    <%= label_tag("user[password]", "用户密码") %> <%= text_field_tag("user[password]", "") %>
+  </div>
+  <div class="login4">
+    <%= label_tag("user[password_confirmation]", "确认密码") %> <%= text_field_tag("user[password_confirmation]", "") %>
+  </div>
+  <div class="login5">
+    <%= submit_tag("确定") %>
+  </div>
 <% end %>
 
